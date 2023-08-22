@@ -1,0 +1,35 @@
+---
+interface Props {
+  size?: "sm" | "md" | "lg";
+  inline?: boolean;
+  class?: string;
+}
+
+const { class: className, size = "md", inline } = Astro.props;
+---
+
+{
+  inline ? (
+    <span class:list={[size, className]}>
+      <slot />
+    </span>
+  ) : (
+    <p class:list={[size, className]}>
+      <slot />
+    </p>
+  )
+}
+
+<style>
+  .sm {
+    font-size: var(--text-size-sm);
+  }
+
+  .md {
+    font-size: var(--text-size-md);
+  }
+
+  .lg {
+    font-size: var(--text-size-lg);
+  }
+</style>
